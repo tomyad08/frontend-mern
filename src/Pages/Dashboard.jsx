@@ -25,52 +25,70 @@ const Dashboard = () => {
     });
   };
 
+  const handleHapus = async (value) => {
+    await axios.delete(API.DATA_MAHASISWA + `${value}`);
+  };
+
   return (
-    <div className="container-fluid">
-      {!loading ? (
-        <div>
-          <Link to="/add">
-            <button className="btn">Tambah Data</button>
-          </Link>
-          <table>
-            <tr>
-              <th className="border border-2 p-1">id</th>
-              <th className="border border-2 p-1">Nama Lengkap</th>
-              <th className="border border-2 p-1">Jenis Kelamin</th>
-              <th className="border border-2 p-1">Tanggal Lahir</th>
-              <th className="border border-2 p-1">Tempat Lahir</th>
-              <th className="border border-2 p-1">Alamat</th>
-              <th className="border border-2 p-1">Edit</th>
-              <th className="border border-2 p-1">Hapus</th>
-            </tr>
-            {data?.map((value) => (
-              <tr key={value.id} className="border border-2">
-                <td className="border border-2 p-1">{value.id}</td>
-                <td className="border border-2 p-1">{value.nama_lengkap}</td>
-                <td className="border border-2 p-1">{value.jenis_kelamin}</td>
-                <td className="border border-2 p-1">{value.tanggal_lahir}</td>
-                <td className="border border-2 p-1">{value.tempat_lahir}</td>
-                <td className="border border-2 p-1">{value.alamat}</td>
-                <th>
-                  <button
-                    className="btn border border-2 py-2 px-3"
-                    onClick={() => handleEdit(value)}
-                  >
-                    Edit
-                  </button>
-                </th>
-                <th>
-                  <button className="btn border border-2 py-2 px-3">
-                    Hapus
-                  </button>
-                </th>
+    <div
+      className="container-fluid py-5"
+      style={{ backgroundColor: "#AEAEAE" }}
+    >
+      <div className="d-flex justify-content-center">
+        {!loading ? (
+          <div>
+            <Link to="/add">
+              <button className="btn btn-primary border border-black border-2 rounded-2 my-3">
+                + Tambah Data
+              </button>
+            </Link>
+            <table>
+              <tr>
+                <th id="th">id</th>
+                <th id="th">Nama Lengkap</th>
+                <th id="th">Jenis Kelamin</th>
+                <th id="th">Tanggal Lahir</th>
+                <th id="th">Tempat Lahir</th>
+                <th id="th">Alamat</th>
+                <th id="th">Edit</th>
+                <th id="th">Hapus</th>
               </tr>
-            ))}
-          </table>
-        </div>
-      ) : (
-        <p>Loading...</p>
-      )}
+              {data?.map((value) => (
+                <tr
+                  key={value.id}
+                  className="border border-2 px-3"
+                  style={{ backgroundColor: "white" }}
+                >
+                  <td id="td">{value.id}</td>
+                  <td id="td">{value.nama_lengkap}</td>
+                  <td id="td">{value.jenis_kelamin}</td>
+                  <td id="td">{value.tanggal_lahir.substring(0, 10)}</td>
+                  <td id="td">{value.tempat_lahir}</td>
+                  <td id="td">{value.alamat}</td>
+                  <th id="td">
+                    <button
+                      className="btn btn-primary border border-2 border-black py-2 px-3"
+                      onClick={() => handleEdit(value)}
+                    >
+                      Edit
+                    </button>
+                  </th>
+                  <th id="td">
+                    <button
+                      className="btn btn-danger border border-2 border-black py-2 px-3"
+                      onClick={() => handleHapus(value.id)}
+                    >
+                      Hapus
+                    </button>
+                  </th>
+                </tr>
+              ))}
+            </table>
+          </div>
+        ) : (
+          <p>Loading...</p>
+        )}
+      </div>
     </div>
   );
 };
