@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/mahasiswa/(.*)",
+      "destination": "/api"
+    }
+  ]
+}
