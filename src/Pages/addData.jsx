@@ -13,33 +13,61 @@ const AddData = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = {
-      nama_lengkap: nama,
-      jenis_kelamin: jenis,
-      tanggal_lahir: tanggal,
-      tempat_lahir: tempat,
-      alamat: alamat,
-    };
-    await axios.post(API.ADD_MAHASISWA, data);
-    navigate("/");
+
+    if (
+      nama === " " &&
+      jenis === " " &&
+      tanggal === " " &&
+      tempat === " " &&
+      alamat === " "
+    ) {
+      return alert("isi data secara lengkap");
+    } else {
+      await axios.post(API.ADD_MAHASISWA, {
+        nama_lengkap: nama,
+        jenis_kelamin: jenis,
+        tanggal_lahir: tanggal,
+        tempat_lahir: tempat,
+        alamat: alamat,
+      });
+      navigate("/dashboard");
+    }
   };
 
   return (
-    <div className="container-fluid d-flex justify-content-center my-3">
-      <div className="border border-3 rounded-3 p-5">
-        <h2 className="text-center">Tambah Data</h2>
+    <div>
+      <div
+        className=" py-3 container-fluid"
+        style={{ backgroundColor: "#2c12bc" }}
+      >
+        <div
+          style={{ backgroundColor: "grey", width: "100px", height: "30px" }}
+        ></div>
+      </div>
+      <div className="mx-5">
+        <div
+          style={{
+            width: "100px",
+            height: "30px",
+            backgroundColor: "grey",
+            marginBottom: "30px",
+            marginTop: "20px",
+          }}
+        ></div>
+        <h1>Tambah Data</h1>
+        <p>Silahkan isi data diri mahasiswa di bawah ini:</p>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             onChange={(e) => setNama(e.target.value)}
             placeholder="nama lengkap"
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
-          />{" "}
-          <br />
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
+            style={{ width: "20%" }}
+          />
           <select
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
             onChange={(e) => setJenis(e.target.value)}
-            style={{ width: "100%" }}
+            style={{ width: "20%" }}
           >
             <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
@@ -49,34 +77,34 @@ const AddData = () => {
             type="text"
             onChange={(e) => setTanggal(e.target.value)}
             placeholder="tanggal lahir, 08-04-1998"
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
+            style={{ width: "20%" }}
           />{" "}
-          <br />
           <input
             type="text"
             onChange={(e) => setTempat(e.target.value)}
             placeholder="tempat lahir"
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
+            style={{ width: "20%" }}
           />{" "}
           <br />
           <input
             type="text"
             onChange={(e) => setAlamat(e.target.value)}
             placeholder="Alamat"
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
-          />{" "}
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
+            style={{ width: "40%" }}
+          />
           <br />
-          <div className="d-flex justify-content-around">
-            <Link to="/">
-              <button className=" btn btn-danger py-1 px-3 border border-0 rounded-4">
-                Cancel
-              </button>
-            </Link>
-            <input
-              type="submit"
-              className=" btn btn-success py-1 px-3 border border-0 rounded-4"
-            />
-          </div>
+          <Link to="/dashboard">
+            <button className=" btn btn-danger py-1 px-3 border border-0 rounded-1 me-2">
+              Cancel
+            </button>
+          </Link>
+          <input
+            type="submit"
+            className=" btn btn-success py-1 px-3 border border-0 rounded-1"
+          />
         </form>
       </div>
     </div>

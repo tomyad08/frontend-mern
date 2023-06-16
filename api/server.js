@@ -25,8 +25,7 @@ db.mongoose
   });
 
 require("./app/routes/mahasiswa.routes.js")(app);
+require("./app/routes/user.routes.js")(app);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`server ${PORT}`));
-
-module.exports = app;

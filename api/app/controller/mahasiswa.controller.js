@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/index");
 const Mahasiswa = db.mahasiswa;
 
 exports.create = (req, res) => {

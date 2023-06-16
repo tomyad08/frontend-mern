@@ -29,63 +29,80 @@ const EditData = () => {
       `http://localhost:8000/mahasiswa/${dataMahasiswa.id}`,
       dataMahasiswa
     );
-    navigate("/");
+    navigate("/dashboard");
   };
 
   return (
-    <div className="container-fluid d-flex justify-content-center my-3">
-      <div className="border border-3 rounded-3 p-5">
-        <h2 className="text-center">Edit</h2>
+    <div>
+      <div
+        className=" py-3 container-fluid"
+        style={{ backgroundColor: "#2c12bc" }}
+      >
+        <div
+          style={{ backgroundColor: "grey", width: "100px", height: "30px" }}
+        ></div>
+      </div>
+      <div className="mx-5">
+        <div
+          style={{
+            width: "100px",
+            height: "30px",
+            backgroundColor: "grey",
+            marginBottom: "30px",
+            marginTop: "20px",
+          }}
+        ></div>
+        <h1>Edit Data</h1>
+        <p>Silahkan perbaiki data diri mahasiswa di bawah ini:</p>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
             onChange={(e) => setNama(e.target.value)}
             placeholder={data.nama_lengkap}
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
+            style={{ width: "20%" }}
           />
-          <br />
           <select
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
             onChange={(e) => setJenis(e.target.value)}
-            style={{ width: "100%" }}
+            style={{ width: "20%" }}
           >
             <option value="Laki-laki">Laki-laki</option>
             <option value="Perempuan">Perempuan</option>
-          </select>
+          </select>{" "}
           <br />
           <input
             type="text"
             onChange={(e) => setTanggal(e.target.value)}
             placeholder={data.tanggal_lahir.substring(0, 10)}
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
-          />
-          <br />
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
+            style={{ width: "20%" }}
+          />{" "}
           <input
             type="text"
             onChange={(e) => setTempat(e.target.value)}
             placeholder={data.tempat_lahir}
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
-          />
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
+            style={{ width: "20%" }}
+          />{" "}
           <br />
           <input
             type="text"
             onChange={(e) => setAlamat(e.target.value)}
             placeholder={data.alamat}
-            className="px-2 py-1 my-1 border border-1 border-black rounded-4"
-            style={{ width: "100%" }}
+            className="p-1 border border-2 rounded-3 my-1 btn btn-light"
+            style={{ width: "40%" }}
           />
           <br />
-          <div className="d-flex justify-content-around">
-            <Link to="/">
-              <button className=" btn btn-danger border border-0 rounded-4 py-1 px-3">
-                Cancel
-              </button>
-            </Link>
-            <input
-              type="submit"
-              className=" btn btn-success border border-0 rounded-4 py-1 px-3"
-            />
-          </div>
+          <Link to="/dashboard">
+            <button className=" btn btn-danger py-1 px-3 border border-0 rounded-1 me-2">
+              Cancel
+            </button>
+          </Link>
+          <input
+            type="submit"
+            className=" btn btn-success py-1 px-3 border border-0 rounded-1"
+          />
         </form>
       </div>
     </div>
